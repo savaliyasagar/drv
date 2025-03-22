@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRV - Premium Cabinet Hardware</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products-details.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/fav.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="{% static 'images/logo.png' %}" alt="drv Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">HOME</a></li>
+                    <li><a href="{% url 'collections' %}" class="nav-link {% if 'collections' in request.path %}active{% endif %}">COLLECTIONS</a></li>
+                    <li><a href="{% url 'gallery' %}" class="nav-link {% if 'gallery' in request.path %}active{% endif %}">GALLERY</a></li>
+                    <li><a href="{% url 'aboutus' %}" class="nav-link {% if 'aboutus' in request.path %}active{% endif %}">ABOUT US</a></li>
+                    <li><a href="{% url 'contactus' %}" class="nav-link {% if 'contactus' in request.path %}active{% endif %}">CONTACT US</a></li>
+                </ul>
+            </nav>
+            <!-- <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div> -->
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <a href="index.html">
+                        <img src="{% static 'images/logo.png' %}" alt="drv Logo">
+                    </a>
+                </div>
+                <div class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <nav class="mobile-menu-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">HOME</a></li>
+                    <li><a href="{% url 'collections' %}" class="{% if 'collections' in request.path %}active{% endif %}">COLLECTIONS</a></li>
+                    <li><a href="{% url 'gallery' %}" class="{% if 'gallery' in request.path %}active{% endif %}">GALLERY</a></li>
+                    <li><a href="{% url 'aboutus' %}" class="{% if 'aboutus' in request.path %}active{% endif %}">ABOUT US</a></li>
+                    <li><a href="{% url 'contactus' %}" class="{% if 'contactus' in request.path %}active{% endif %}">CONTACT US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="drv Logo">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="{% url "home" %}">Home</a></li>
+                            <li><a href="{% url "collections" %}">Collections</a></li>
+                            <li><a href="{% url "gallery" %}">Gallery</a></li>
+                            <li><a href="{% url "aboutus" %}">About Us</a></li>
+                            <li><a href="{% url "contactus" %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <ul>
+                            <li><a href="collections.html#cabinet-handles">Cabinet Handles</a></li>
+                            <li><a href="collections.html#lip-pull-handles">Lip Pull Handles</a></li>
+                            <li><a href="collections.html#appliance-pulls">Appliance Pulls</a></li>
+                            <li><a href="collections.html#cabinet-knobs">Cabinet Knobs</a></li>
+                            <li><a href="collections.html#door-lever-handle">Door Lever Handle</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> Address Line 1, City, Country</li>
+                            <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                            <li><i class="fas fa-envelope"></i> info@infinitieimpex.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Divyam International. All Rights Reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %} "></script>
+    <script src="{% static 'js/index.js' %} "></script>
+    <script src="{% static 'js/products-details.js' %} "></script>
+</body>
+
+</html>
