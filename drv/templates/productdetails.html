@@ -1,0 +1,273 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<main class="product-container">
+    <section class="product-showcase">
+        <div class="product-image-container">
+            <div class="image-zoom-container">
+                {% with product.images.first as primary_image %}
+                    {% if primary_image %}
+                        <img src="{{ primary_image.image.url }}" alt="{{ product.name }}" class="product-image" id="productImage">
+                    {% else %}
+                        <img src="{% static 'images/placeholder.jpg' %}" alt="{{ product.name }}" class="product-image" id="productImage">
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="product-thumbnails">
+                {% for image in product.images.all %}
+                    <div class="thumbnail {% if forloop.first %}active{% endif %}" data-img="{{ image.image.url }}">
+                        <img src="{{ image.image.url }}" alt="{{ product.name }} - Image {{ forloop.counter }}">
+                    </div>
+                {% empty %}
+                    <div class="thumbnail active" data-img="{% static 'images/placeholder.jpg' %}">
+                        <img src="{% static 'images/placeholder.jpg' %}" alt="{{ product.name }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="product-details">
+            <h1 class="product-title">{{ product.name }}</h1>
+            <div class="product-rating">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= product.rating %}
+                        <i class="fas fa-star"></i>
+                    {% elif forloop.counter <= product.rating|add:0.5 %}
+                        <i class="fas fa-star-half-alt"></i>
+                    {% else %}
+                        <i class="far fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+                <span>({{ product.rating }}/5)</span>
+            </div>
+            <div class="product-description">
+                <p>{{ product.description }}</p>
+                <ul class="feature-list">
+                    {% for feature in product.get_features_list %}
+                        <li><i class="fas fa-check"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="product-finishes">
+                <h3>Available Finishes:</h3>
+                <div class="finish-options">
+                    {% for finish in product.get_finishes_list %}
+                        {% if "black" in finish.lower %}
+                            <div class="finish-option black" title="{{ finish }}" data-finish="{{ finish }}"></div>
+                        {% elif "brass" in finish.lower or "gold" in finish.lower %}
+                            <div class="finish-option gold" title="{{ finish }}" data-finish="{{ finish }}"></div>
+                        {% elif "bronze" in finish.lower %}
+                            <div class="finish-option bronze" title="{{ finish }}" data-finish="{{ finish }}"></div>
+                        {% elif "nickel" in finish.lower or "silver" in finish.lower %}
+                            <div class="finish-option nickel" title="{{ finish }}" data-finish="{{ finish }}"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="selected-finish">Selected: <span id="selectedFinish">{{ product.get_finishes_list.0 }}</span></p>
+            </div>
+            <button class="inquiry-btn" id="inquiryBtn" onclick="openInquiryModal()">
+                <i class="fas fa-envelope"></i> Send Inquiry
+            </button>
+        </div>
+    </section>
+    
+    <section class="product-specifications">
+        <h2 class="sectiontitle">Product Specifications</h2>
+        <div class="table-container">
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Size</th>
+                        <th>Weight</th>
+                        <th>Material</th>
+                        <th>Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for spec in product.specifications.all %}
+                        <tr>
+                            <td>{{ spec.product_code }}</td>
+                            <td>{{ spec.size }}</td>
+                            <td>{{ spec.weight }}</td>
+                            <td>{{ spec.material }}</td>
+                            <td>{{ spec.premium_level }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5">No specifications available</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section class="related-products">
+        <h2 class="sectiontitle">Related Products</h2>
+        <div class="related-products-grid">
+            {% for related in related_products %}
+                <div class="related-product">
+                    <div class="related-product-image">
+                        {% with related.images.first as related_image %}
+                            {% if related_image %}
+                                <img src="{{ related_image.image.url }}" alt="{{ related.name }}">
+                            {% else %}
+                                <img src="{% static 'images/placeholder.jpg' %}" alt="{{ related.name }}">
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <h3>{{ related.name }}</h3>
+                    <p>{{ related.category.name }}</p>
+                    <a href="{{ related.get_absolute_url }}" class="view-related">View Details</a>
+                </div>
+            {% empty %}
+                <div class="no-related">
+                    <p>No related products available.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+<!-- Inquiry Modal -->
+<div id="inquiryModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Product Inquiry</h2>
+        <form id="inquiryForm" action="{% url 'inquiry' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Inquiry</button>
+        </form>
+    </div>
+</div>
+
+<style>
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 7% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #ffd23ed5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit-btn:hover {
+    background-color: #ffbf10;
+}
+</style>
+
+<script>
+function openInquiryModal() {
+    document.getElementById('inquiryModal').style.display = 'block';
+}
+
+// Close modal when clicking on X button
+document.querySelector('.close-modal').onclick = function() {
+    document.getElementById('inquiryModal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    let modal = document.getElementById('inquiryModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Handle form submission
+document.getElementById('inquiryForm').onsubmit = function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    fetch('/inquiry/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert(data.message);
+            document.getElementById('inquiryModal').style.display = 'none';
+            this.reset();
+        } else {
+            alert(data.message || 'An error occurred. Please try again.');
+        }
+    })
+    .catch(error => {
+        alert('An error occurred. Please try again.');
+    });
+};
+</script>
+
+{% endblock content %}
+

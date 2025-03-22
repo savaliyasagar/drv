@@ -1,0 +1,91 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner">
+            <div class="banner-content">
+                <h1>Our Collections</h1>
+                <p>Discover our premium range of cabinet hardware and accessories</p>
+            </div>
+        </section>
+
+        <!-- Collection Categories -->
+        <section class="collection-categories">
+            <div class="container">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-target="all">All Products</button>
+                    {% for category in categories %}
+                        <button class="tab-btn" data-target="{{ category.slug }}">{{ category.name }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Grid -->
+        <section class="product-collection">
+            <div class="container">
+                <div class="collection-grid">
+                    {% for product in products %}
+                        <div class="collection-item" data-category="{{ product.category.slug }}">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    {% with product.images.first as primary_image %}
+                                        {% if primary_image %}
+                                            <img src="{{ primary_image.image.url }}" alt="{{ product.name }}">
+                                        {% else %}
+                                            <img src="{% static 'images/placeholder.jpg' %}" alt="{{ product.name }}">
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="product-info">
+                                    <h3>{{ product.name }}</h3>
+                                    <p>{{ product.description|truncatechars:50 }}</p>
+                                    <a href="{{ product.get_absolute_url }}" class="product-btn">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="no-products">
+                            <p>No products available at the moment.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Collection -->
+        <section class="featured-collection">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Collection</h2>
+                    <p>Our most popular designs</p>
+                </div>
+                <div class="featured-slider">
+                    {% for product in featured_products %}
+                        <div class="featured-slide {% if forloop.first %}active{% endif %}">
+                            {% with product.images.first as primary_image %}
+                                {% if primary_image %}
+                                    <img src="{{ primary_image.image.url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="{% static 'images/placeholder.jpg' %}" alt="{{ product.name }}">
+                                {% endif %}
+                            {% endwith %}
+                            <div class="featured-info">
+                                <h3>{{ product.name }}</h3>
+                                <a href="{{ product.get_absolute_url }}" class="view-btn">View Collection</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="slider-dots">
+                    {% for product in featured_products %}
+                        <span class="dot {% if forloop.first %}active{% endif %}"></span>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
