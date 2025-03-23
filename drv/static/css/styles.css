@@ -11,6 +11,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
+
 /* Poore page ke liye */
 body {
     font-family: 'Montserrat', sans-serif;
@@ -25,6 +26,7 @@ body {
 .category-tabs .tab-btn {
     font-family: 'Montserrat', sans-serif;
 }
+
 /* Gallery Filter section ke liye */
 .gallery-filter {
     font-family: 'Montserrat', sans-serif;
@@ -455,8 +457,9 @@ header .container {
 
 .collection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(365px, 0fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(267px, 0fr));
+    gap: 28px;
+    justify-content: center;
 }
 
 .product-card {
