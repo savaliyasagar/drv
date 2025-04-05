@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from django.http import JsonResponse
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -61,7 +62,23 @@ def product_subproducts_view(request, slug):
 
 
 def gallery(request):
-    return render(request, 'gallery.html')
+     # Get all gallery items
+    gallery_items = GalleryItem.objects.all()
+    
+    # Get all categories
+    categories = GalleryCategory.objects.all()
+    
+    # Get featured projects
+    featured_projects = Project.objects.filter(featured=True)
+    
+    context = {
+        'gallery_items': gallery_items,
+        'categories': categories,
+        'featured_projects': featured_projects,
+    }
+    
+    return render(request, 'gallery.html', context)
+
 def contactus(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -145,4 +162,25 @@ def inquiry(request):
 def productdetails(request):
     return render(request, 'productdetails.html')
 def aboutus(request):
-    return render(request, 'aboutus.html')
+    # Get company story (use first one if multiple exist)
+    try:
+        company_story = CompanyStory.objects.first()
+    except CompanyStory.DoesNotExist:
+        company_story = None
+    
+    # Get values
+    values = Value.objects.all()
+    
+    # Get manufacturing steps
+    manufacturing_steps = ManufacturingStep.objects.all()
+    
+    # Get team members
+    team_members = TeamMember.objects.all()
+    
+    context = {
+        'company_story': company_story,
+        'values': values,
+        'manufacturing_steps': manufacturing_steps,
+        'team_members': team_members,
+    }
+    return render(request, 'aboutus.html', context)

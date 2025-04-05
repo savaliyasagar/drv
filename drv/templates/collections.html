@@ -5,7 +5,7 @@
     <main>
         <!-- Page Banner -->
         <section class="page-banner">
-            <div class="banner-content">
+            <div class="banner-content" data-aos="fade-up">
                 <h1>Our Collections</h1>
                 <p>Discover our premium range of cabinet hardware and accessories</p>
             </div>
@@ -13,7 +13,7 @@
 
         <!-- Collection Categories -->
         <section class="collection-categories">
-            <div class="container">
+            <div class="container" data-aos="zoom-in">
                 <div class="category-tabs">
                     <button class="tab-btn active" data-target="all">All Products</button>
                     {% for category in categories %}
@@ -26,11 +26,12 @@
         <!-- Product Grid -->
         <section class="product-collection">
             <div class="container">
-                <div class="collection-grid">
+                <div class="collection-grid" data-aos="fade-up">
                     {% for product in products %}
                         <div class="collection-item" data-category="{{ product.category.slug }}">
+                            <a href="{{ product.get_absolute_url }}">
                             <div class="product-card">
-                                <div class="product-image">
+                                <div class="product-image productimage">
                                     {% with product.images.first as primary_image %}
                                         {% if primary_image %}
                                             <img src="{{ primary_image.image.url }}" alt="{{ product.name }}">
@@ -42,9 +43,10 @@
                                 <div class="product-info">
                                     <h3>{{ product.name }}</h3>
                                     <p>{{ product.description|truncatechars:50 }}</p>
-                                    <a href="{{ product.get_absolute_url }}" class="product-btn">View Details</a>
+        
                                 </div>
                             </div>
+                            </a>
                         </div>
                     {% empty %}
                         <div class="no-products">
@@ -58,11 +60,11 @@
         <!-- Featured Collection -->
         <section class="featured-collection">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header" data-aos="zoom-in">
                     <h2>Featured Collection</h2>
                     <p>Our most popular designs</p>
                 </div>
-                <div class="featured-slider">
+                <div class="featured-slider" data-aos="fade-up">
                     {% for product in featured_products %}
                         <div class="featured-slide {% if forloop.first %}active{% endif %}">
                             {% with product.images.first as primary_image %}

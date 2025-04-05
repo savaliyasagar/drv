@@ -70,3 +70,42 @@ class ContactUsAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
 
 
+@admin.register(GalleryCategory)
+class GalleryCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(GalleryItem)
+class GalleryItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'featured', 'created_at')
+    list_filter = ('category', 'featured', 'created_at')
+    search_fields = ('title', 'description')
+    date_hierarchy = 'created_at'
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('title', 'featured', 'created_at')
+    list_filter = ('featured', 'created_at')
+    search_fields = ('title', 'description')
+    date_hierarchy = 'created_at'
+    
+
+@admin.register(CompanyStory)
+class CompanyStoryAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+@admin.register(Value)
+class ValueAdmin(admin.ModelAdmin):
+    list_display = ('title', 'icon', 'order')
+    list_editable = ('order',)
+
+@admin.register(ManufacturingStep)
+class ManufacturingStepAdmin(admin.ModelAdmin):
+    list_display = ('step_number', 'title')
+    list_editable = ('title',)
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position', 'order')
+    list_editable = ('position', 'order')
+

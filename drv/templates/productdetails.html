@@ -4,11 +4,11 @@
 
 <main class="product-container">
     <section class="product-showcase">
-        <div class="product-image-container">
+        <div class="product-image-container" data-aos="fade-right">
             <div class="image-zoom-container">
                 {% with product.images.first as primary_image %}
                     {% if primary_image %}
-                        <img src="{{ primary_image.image.url }}" alt="{{ product.name }}" class="product-image" id="productImage">
+                        <img src="{{ primary_image.image.url }}" alt="{{ product.name }}" class="product-image responsive" id="productImage">
                     {% else %}
                         <img src="{% static 'images/placeholder.jpg' %}" alt="{{ product.name }}" class="product-image" id="productImage">
                     {% endif %}
@@ -27,7 +27,7 @@
             </div>
         </div>
         
-        <div class="product-details">
+        <div class="product-details" data-aos="fade-left">
             <h1 class="product-title">{{ product.name }}</h1>
             <div class="product-rating">
                 {% for i in "12345" %}
@@ -42,8 +42,10 @@
                 <span>({{ product.rating }}/5)</span>
             </div>
             <div class="product-description">
+                <h3>Description :</h3>
                 <p>{{ product.description }}</p>
                 <ul class="feature-list">
+                <h3>Features :</h3>
                     {% for feature in product.get_features_list %}
                         <li><i class="fas fa-check"></i> {{ feature }}</li>
                     {% endfor %}
@@ -73,8 +75,8 @@
     </section>
     
     <section class="product-specifications">
-        <h2 class="sectiontitle">Product Specifications</h2>
-        <div class="table-container">
+        <h2 class="sectiontitle" data-aos="zoom-in">Product Specifications</h2>
+        <div class="table-container" data-aos="fade-left">
             <table class="specs-table">
                 <thead>
                     <tr>
@@ -105,8 +107,8 @@
     </section>
     
     <section class="related-products">
-        <h2 class="sectiontitle">Related Products</h2>
-        <div class="related-products-grid">
+        <h2 class="sectiontitle" data-aos="zoom-in">Related Products</h2>
+        <div class="related-products-grid" data-aos="fade-up">
             {% for related in related_products %}
                 <div class="related-product">
                     <div class="related-product-image">

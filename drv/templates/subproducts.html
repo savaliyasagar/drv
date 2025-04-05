@@ -5,7 +5,7 @@
     <main>
         <!-- Page Banner -->
         <section class="page-banner">
-            <div class="banner-content">
+            <div class="banner-content" data-aos="zoom-in">
                 <h1>{{ product.name }} Variants</h1>
                 <p>Choose from our range of {{ product.name }} variants</p>
             </div>
@@ -14,9 +14,10 @@
         <!-- Product Grid -->
         <section class="product-collection">
             <div class="container">
-                <div class="collection-grid">
+                <div class="collection-grid" data-aos="fade-up">
                     {% for subproduct in subproducts %}
                         <div class="collection-item">
+                            <a href="{{ subproduct.get_absolute_url }}">
                             <div class="product-card">
                                 <div class="product-image">
                                     {% with subproduct.images.first as primary_image %}
@@ -30,9 +31,9 @@
                                 <div class="product-info">
                                     <h3>{{ subproduct.name }}</h3>
                                     <p>{{ subproduct.description|truncatechars:50 }}</p>
-                                    <a href="{{ subproduct.get_absolute_url }}" class="product-btn">View Details</a>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     {% empty %}
                         <div class="no-products">

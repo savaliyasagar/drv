@@ -5,20 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRV - Premium Cabinet Hardware</title>
+    <title>DRV - Divyam International</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/products-details.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/fav.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/fav2.png' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
     <header>
-        <div class="container">
+        <div class="container" data-aos="zoom-in">
             <div class="logo">
-                <a href="index.html">
+                <a href="{% url "home" %}">
                     <img src="{% static 'images/logo.png' %}" alt="drv Logo">
                 </a>
             </div>
@@ -67,9 +68,9 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content" data-aos="fade-up">
                 <div class="footer-logo">
-                    <img src="{% static 'images/logo.png' %}" alt="drv Logo">
+                    <a href="{% url "home" %}"><img src="{% static 'images/logo.png' %}" alt="drv Logo"></a>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -85,19 +86,20 @@
                     <div class="footer-column">
                         <h4>Products</h4>
                         <ul>
-                            <li><a href="collections.html#cabinet-handles">Cabinet Handles</a></li>
-                            <li><a href="collections.html#lip-pull-handles">Lip Pull Handles</a></li>
-                            <li><a href="collections.html#appliance-pulls">Appliance Pulls</a></li>
-                            <li><a href="collections.html#cabinet-knobs">Cabinet Knobs</a></li>
-                            <li><a href="collections.html#door-lever-handle">Door Lever Handle</a></li>
+                            <li><a href="{% url "collections" %}">Cabinet Handles</a></li>
+                            <li><a href="{% url "collections" %}">Pull Handles</a></li>
+                            <li><a href="{% url "collections" %}">Levers Handles</a></li>
+                            <li><a href="{% url "collections" %}">Lip Handles</a></li>
+                            <li><a href="{% url "collections" %}">Knob</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h4>Contact</h4>
                         <ul>
-                            <li><i class="fas fa-map-marker-alt"></i> Address Line 1, City, Country</li>
-                            <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
-                            <li><i class="fas fa-envelope"></i> info@infinitieimpex.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Plot No. 4770, Phase-3 G.I.D.C.
+                                Dared, Jamnagar, Gujarat-361004</li>
+                            <li><i class="fas fa-phone"></i> +91 79908 89192</li>
+                            <li><i class="fas fa-envelope"></i> divyaminternatonal08@gmail.com</li>
                         </ul>
                     </div>
                 </div>
@@ -105,9 +107,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Divyam International. All Rights Reserved.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/share/18jgSAEBvh/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/divyam.international?igsh=MWgyYW9vejVwYm91YQ=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/divyam-international/"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
@@ -116,6 +118,14 @@
     <script src="{% static 'js/script.js' %} "></script>
     <script src="{% static 'js/index.js' %} "></script>
     <script src="{% static 'js/products-details.js' %} "></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1400,    // Animation duration in milliseconds
+        once: true,        // Animation occurs only once
+        offset: 100        // Offset (in px) from the original trigger point
+      });
+    </script>
 </body>
 
 </html>

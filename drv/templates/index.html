@@ -7,18 +7,18 @@
             <div class="slider-container">
                 <div class="slide active">
                     <div class="slide-content">
-                        <div class="slide-text">
+                        <div class="slide-text" data-aos="fade-left">
                             <span class="product-category">Brass Cabinet Hardware</span>
                             <h2 class="product-title">Knurled-Shaped<br>Cabinet Handle</h2>
                             <div class="product-variants">
-                                <img src="{% static 'images/banner1.jpg' %}" alt="Black Handle" class="variant-img">
-                                <img src="{% static 'images/banner2.jpg' %}" alt="Gold Handle" class="variant-img">
-                                <img src="{% static 'images/banner3.jpg' %}" alt="Copper Handle" class="variant-img">
+                                <img src="{% static 'images/smallbanner1.jpg' %}" alt="Black Handle" class="variant-img">
+                                <img src="{% static 'images/smallbanner2.jpg' %}" alt="Gold Handle" class="variant-img">
+                                <img src="{% static 'images/smallbanner3.jpg' %}" alt="Copper Handle" class="variant-img">
                             </div>
                             <a href="{% url "collections" %}" class="shop-btn">GO TO SHOP</a>
                         </div>
-                        <div class="slide-image">
-                            <img src="{% static 'images/banner1.jpg' %}" alt="Knurled Cabinet Handles" class="product-image">
+                        <div class="slide-image" data-aos="fade-right">
+                            <img src="{% static 'images/smallbanner1.jpg' %}" alt="Knurled Cabinet Handles" class="product-image">
                         </div>
                     </div>
                 </div>
@@ -28,9 +28,9 @@
                             <span class="product-category">Premium Hardware</span>
                             <h2 class="product-title">Elegant Door<br>Lever Handles</h2>
                             <div class="product-variants">
-                                <img src="{% static 'images/banner1.jpg' %}" alt="Black Lever" class="variant-img">
-                                <img src="{% static 'images/banner2.jpg' %}" alt="Gold Lever" class="variant-img">
-                                <img src="{% static 'images/banner3.jpg' %}" alt="Bronze Lever" class="variant-img">
+                                <img src="{% static 'images/smlbanner1.jpg' %}" alt="Black Lever" class="variant-img">
+                                <img src="{% static 'images/smlbanner2.jpg' %}" alt="Gold Lever" class="variant-img">
+                                <img src="{% static 'images/smlbanner3.jpg' %}" alt="Bronze Lever" class="variant-img">
                             </div>
                             <a href="{% url "collections" %}" class="shop-btn">GO TO SHOP</a>
                         </div>
@@ -46,7 +46,7 @@
 
         <!-- Product Categories Section -->
         <section class="product-categories">
-            <div class="container">
+            <div class="container" data-aos="fade-left">
                 <div class="category-grid">
                     {% for category in categories %}
                     <a href="{% url 'collections' %}#{{ category.slug }}" class="category-item">
@@ -69,7 +69,7 @@
 
     <!-- Featured Products Section -->
     <section class="featured-products">
-        <div class="container">
+        <div class="container" data-aos="zoom-in">
             <div class="product-grid">
                 {% for product in featured_grid_products %}
                     {% if forloop.first %}
@@ -87,7 +87,7 @@
                             {% endwith %}
                             <div class="product-overlay">
                                 <h3>{{ product.name|upper }}</h3>
-                                <a href="{{ product.get_absolute_url }}" class="product-btn">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="{{ product.get_absolute_url }}" class="product-btn">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -103,11 +103,11 @@
     <main>
         <section class="featured-products">
             <div class="container">
-                <div class="section-title">
+                <div class="section-title" data-aos="fade-up">
                     <h2>Featured Products</h2>
                     <p>Discover our premium collection of cabinet hardware</p>
                 </div>
-                <div class="products-grid">
+                <div class="products-grid" data-aos="fade-left">
                     <!-- Visible Products -->
                     {% for product in visible_products %}
                         <div class="product-item" 
@@ -166,6 +166,7 @@
                             data-description="{{ product.description }}"
                             data-features="{{ product.get_features_list|join:',' }}"
                             data-product-url="{{ product.get_absolute_url }}">
+                            <a href="{{ product.get_absolute_url }}">
                             <div class="product-images">
                                 {% with product.images.first as primary_image %}
                                     {% if primary_image %}
@@ -201,12 +202,13 @@
                                 <h3>{{ product.name }}</h3>
                                 <p class="product-category">{{ product.category.name }}</p>
                             </div>
+                        </a>    
                         </div>
                     {% endfor %}
                 </div>
 
                 {% if hidden_products %}
-                <div class="load-more-container">
+                <div class="load-more-container" data-aos="zoom-in">
                     <button id="load-more-btn" class="load-more-btn">Load More Products</button>
                 </div>
                 {% endif %}
@@ -251,11 +253,11 @@
     <!-- Our Best Services Section -->
     <section class="our-services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>Our Best Services</h2>
                 <p>We provide premium quality hardware solutions</p>
             </div>
-            <div class="services-grid">
+            <div class="services-grid" data-aos="zoom-in">
                 <div class="service-item">
                     <div class="service-icon">
                         <i class="fas fa-truck"></i>

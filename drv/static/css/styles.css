@@ -404,7 +404,7 @@ header .container {
 }
 
 .banner-content {
-    color: #000;
+    color: #fff;
     max-width: 800px;
     padding: 0 20px;
 }
@@ -457,7 +457,7 @@ header .container {
 
 .collection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(267px, 0fr));
+    grid-template-columns: repeat(auto-fill, minmax(217px, 1fr));
     gap: 28px;
     justify-content: center;
 }
@@ -1635,7 +1635,7 @@ img {
 .product-overlay h3 {
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 }
 
 .view-all-container {
@@ -1847,12 +1847,12 @@ img {
 }
 
 .product-info {
-    padding: 15px;
+    padding: 10px;
     text-align: center;
 }
 
 .product-info h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     margin-bottom: 5px;
 }
@@ -1877,6 +1877,8 @@ img {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 .load-more-btn:hover {

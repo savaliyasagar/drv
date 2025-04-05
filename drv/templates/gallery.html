@@ -2,158 +2,84 @@
 {% load static %}
 {% block content %}
 
-
-    <main>
-        <!-- Page Banner -->
-        <section class="page-banner">
-            <div class="banner-content">
-                <h1>Gallery</h1>
-                <p>Explore our products in real-world settings</p>
-            </div>
-        </section>
-
-        <!-- Gallery Filter -->
-        <section class="gallery-filter">
-            <div class="container">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="residential">Residential</button>
-                    <button class="filter-btn" data-filter="commercial">Commercial</button>
-                    <button class="filter-btn" data-filter="hospitality">Hospitality</button>
-                    <button class="filter-btn" data-filter="product-shots">Product Shots</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Grid -->
-        <section class="gallery-grid">
-            <div class="container">
-                <div class="masonry-grid">
-                    <div class="gallery-item" data-category="residential">
-                        <img src="images/collection.jpg" alt="Modern Kitchen with Cabinet Handles">
-                        <div class="gallery-overlay">
-                            <h3>Modern Kitchen</h3>
-                            <p>Featuring our Knurled Cabinet Handles</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="commercial">
-                        <img src="images/banner4.jpg" alt="Office Space with Door Levers">
-                        <div class="gallery-overlay">
-                            <h3>Corporate Office</h3>
-                            <p>Featuring our Modern Door Levers</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="product-shots">
-                        <img src="images/banner1.jpg" alt="Cabinet Handle Collection">
-                        <div class="gallery-overlay">
-                            <h3>Cabinet Handle Collection</h3>
-                            <p>Multiple finishes available</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="residential">
-                        <img src="images/banner2.jpg" alt="Luxury Bathroom">
-                        <div class="gallery-overlay">
-                            <h3>Luxury Bathroom</h3>
-                            <p>Featuring our Gold Cabinet Knobs</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="hospitality">
-                        <img src="images/banner3.jpg" alt="Hotel Room">
-                        <div class="gallery-overlay">
-                            <h3>Boutique Hotel</h3>
-                            <p>Featuring our Brass Collection</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="product-shots">
-                        <img src="images/banner4.jpg" alt="Door Lever Collection">
-                        <div class="gallery-overlay">
-                            <h3>Door Lever Collection</h3>
-                            <p>Premium finishes</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="commercial">
-                        <img src="images/banner1.jpg" alt="Retail Space">
-                        <div class="gallery-overlay">
-                            <h3>Retail Space</h3>
-                            <p>Featuring our Minimalist Collection</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="residential">
-                        <img src="images/banner2.jpg" alt="Contemporary Living Room">
-                        <div class="gallery-overlay">
-                            <h3>Contemporary Living</h3>
-                            <p>Featuring our Designer Series</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-category="hospitality">
-                        <img src="images/banner3.jpg" alt="Restaurant Interior">
-                        <div class="gallery-overlay">
-                            <h3>Fine Dining</h3>
-                            <p>Featuring our Custom Hardware</p>
-                            <button class="gallery-zoom"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Image Modal -->
-        <div class="gallery-modal">
-            <span class="modal-close">&times;</span>
-            <img class="modal-content" id="modal-img">
-            <div class="modal-caption"></div>
-            <button class="modal-prev"><i class="fas fa-chevron-left"></i></button>
-            <button class="modal-next"><i class="fas fa-chevron-right"></i></button>
+<main>
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-content" data-aos="zoom-in">
+            <h1>Gallery</h1>
+            <p>Explore our products in real-world settings</p>
         </div>
+    </section>
 
-        <!-- This is just the updated section for the Project Showcase. 
-     You should integrate this with your existing HTML file. -->
-
-        <!-- Project Showcase -->
-        <section class="project-showcase">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Featured Projects</h2>
-                    <p>See how our products transform spaces</p>
-                </div>
-                <div class="project-slider">
-                    <div class="project-slide active">
-                        <div class="project-image">
-                            <img src="images/banner1.jpg" alt="Luxury Residence">
-                        </div>
-                        <div class="project-info">
-                            <h3>Luxury Residence</h3>
-                            <p>A complete home transformation featuring our premium cabinet hardware throughout the
-                                kitchen, bathrooms, and custom closets.</p>
-                            <a href="#" class="project-btn">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-slide">
-                        <div class="project-image">
-                            <img src="images/banner2.jpg" alt="Boutique Hotel">
-                        </div>
-                        <div class="project-info">
-                            <h3>Boutique Hotel</h3>
-                            <p>Custom hardware solutions for a luxury boutique hotel, including door levers, cabinet
-                                handles, and specialty items.</p>
-                            <a href="#" class="project-btn">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                </div>
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-buttons" data-aos="fade-left">
+                <button class="filter-btn active" data-filter="all">All</button>
+                {% for category in categories %}
+                <button class="filter-btn" data-filter="{{ category.slug }}">{{ category.name }}</button>
+                {% endfor %}
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid">
+        <div class="container">
+            <div class="masonry-grid" data-aos="fade-right">
+                {% for item in gallery_items %}
+                <div class="gallery-item" data-category="{{ item.category.slug }}">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                    <div class="gallery-overlay">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                        <button class="gallery-zoom" data-index="{{ forloop.counter0 }}"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div class="gallery-modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div class="modal-caption"></div>
+        <button class="modal-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Project Showcase -->
+    <section class="project-showcase">
+        <div class="container">
+            <div class="section-header" data-aos="zoom-in">
+                <h2>Featured Projects</h2>
+                <p>See how our products transform spaces</p>
+            </div>
+            <div class="project-slider">
+                {% for project in featured_projects %}
+                <div class="project-slide {% if forloop.first %}active{% endif %}">
+                    <div class="project-image" data-aos="fade-right">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    </div>
+                    <div class="project-info" data-aos="fade-left">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        {% if project.link %}
+                        <a href="{{ project.link }}" class="project-btn">View Project</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="slider-dots" data-aos="zoom-in">
+                {% for project in featured_projects %}
+                <span class="dot {% if forloop.first %}active{% endif %}"></span>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
 
 {% endblock content %}
